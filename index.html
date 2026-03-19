@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="株式会社無限プロジェクト - 有料職業紹介事業。お仕事をお探しの方、人材をお求めの企業様、お気軽にご相談ください。">
+    <title>株式会社無限プロジェクト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 背景 -->
+    <div id="background">
+        <div id="background-overlay"></div>
+    </div>
+
+    <!-- 社名ロゴ -->
+    <div id="company-logo">
+        <a href="https://job-mugen.com/" target="_blank" rel="noopener noreferrer">
+            株式会社無限プロジェクト
+        </a>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div id="app">
+        <!-- 吹き出し -->
+        <div id="speech-bubble" class="glass-panel">
+            <div id="speech-text"></div>
+            <div id="speech-contact" class="hidden">
+                <a href="https://job-mugen.com/contact" target="_blank" rel="noopener noreferrer">
+                    📩 お問い合わせはこちら
+                </a>
+            </div>
+            <div class="bubble-tail"></div>
+        </div>
+
+        <!-- ワシキャラクター -->
+        <div id="character-container">
+            <img id="eagle-01" class="eagle-img active" src="Image/01_ワシ_目開き口閉じ_T.png" alt="ムゲンイーグル">
+            <img id="eagle-02" class="eagle-img" src="Image/02_ワシ_目閉じ口閉じ_T.png" alt="ムゲンイーグル 瞬き">
+            <img id="eagle-03" class="eagle-img" src="Image/03_ワシ_目開き口開き_T.png" alt="ムゲンイーグル 発話">
+            <img id="eagle-04" class="eagle-img" src="Image/04_ワシ_目閉じ口開き_T.png" alt="ムゲンイーグル 発話瞬き">
+        </div>
+
+        <!-- 入力エリア -->
+        <div id="input-area" class="glass-panel">
+            <div id="input-wrapper">
+                <input type="text" id="chat-input" placeholder="メッセージを入力..." autocomplete="off" maxlength="200">
+                <button id="send-btn" title="送信">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="loading-indicator" class="hidden">
+                <div class="dot-pulse">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="loading-text">考え中...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
