@@ -8,8 +8,8 @@
 
     // ===== Configuration =====
     const CONFIG = {
-        API_KEY: 'AIzaSyAlY_6CHzzIMmx2189gIECKbxxnOzO3tI0',
-        API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent',
+        // GASでデプロイしたウェブアプリのURLをここに設定してください
+        API_URL: 'https://script.google.com/macros/s/AKfycbx_CItnwZ4nw7RiIUS1SA-JSNPpsiOk_TaV2ZVhoPVb01AVvniadavisOtUANurlkSh/exec',
         MAX_HISTORY_TURNS: 3,
         TYPEWRITER_SPEED: 50,       // ms per character
         MOUTH_INTERVAL: 200,        // ms mouth open/close
@@ -222,12 +222,13 @@
     }
 
     async function sendToGemini(userMessage) {
-        const url = `${CONFIG.API_URL}?key=${CONFIG.API_KEY}`;
+        const url = CONFIG.API_URL;
         const body = buildRequestBody(userMessage);
 
         const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            // CORSエラーを避けるため、GASの場合は text/plain が推奨されます
+            headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify(body)
         });
 
@@ -236,9 +237,17 @@
         }
 
         const data = await response.json();
+
+        // エラーレスポンスが含まれている場合のハンドリング
+        if (data.error) {
+            console.error('Gemini API Error:', data.error);
+            throw new Error(`Gemini API Error: ${data.error.message || data.error.status}`);
+        }
+
         const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
         if (!reply) {
+            console.error('Unexpected Response:', data);
             throw new Error('Empty response from API');
         }
 
