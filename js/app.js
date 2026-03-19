@@ -8,7 +8,7 @@
 
     // ===== Configuration =====
     const CONFIG = {
-        API_KEY: 'AIzaSyDRvT2_mV8aoLEbTgtfsREbdBwPT2rX1no',
+        API_KEY: 'AIzaSyAlY_6CHzzIMmx2189gIECKbxxnOzO3tI0',
         API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent',
         MAX_HISTORY_TURNS: 3,
         TYPEWRITER_SPEED: 50,       // ms per character
