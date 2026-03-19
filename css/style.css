@@ -98,12 +98,12 @@ html, body {
 /* --- Speech Bubble --- */
 #speech-bubble {
     position: absolute;
-    top: 4%;
+    top: 10%; /* Lowered from 4% to avoid overlapping company name */
     left: 50%;
     transform: translateX(-50%);
-    max-width: 520px;
+    max-width: 460px; /* Reduced from 520px to make it narrower */
     width: 88%;
-    padding: 20px 24px;
+    padding: 16px 20px; /* Slightly reduced padding */
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 10;
@@ -114,12 +114,14 @@ html, body {
 }
 
 #speech-text {
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 1.6;
     letter-spacing: 0.02em;
     color: var(--text-primary);
     white-space: pre-wrap;
     word-break: break-word;
+    max-height: 120px;
+    overflow-y: auto;
 }
 
 #speech-contact {

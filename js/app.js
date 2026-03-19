@@ -33,7 +33,8 @@
 - 求職者には：希望職種、経験、条件などを丁寧にヒアリングしてください
 - 求人企業には：求める人材像、待遇条件などを確認してください
 - 丁寧かつ親しみやすい口調で対応してください
-- 回答は簡潔にまとめてください（300文字以内）
+- 回答は必ず150文字以内で、2〜3文の簡潔な文章にまとめてください
+- 長い説明は避け、要点だけを伝えてください
 - 具体的な求人案件の紹介はできないことを伝え、詳細はお問い合わせを促してください
 - 最初の質問では「お仕事を探していますか？ 人材を求めていますか？」と聞いてあるので、その回答に合わせて対応してください`
     };
@@ -214,7 +215,7 @@
             },
             contents: contents,
             generationConfig: {
-                maxOutputTokens: 400,
+                maxOutputTokens: 200,
                 temperature: 0.7
             }
         };
@@ -241,8 +242,8 @@
             throw new Error('Empty response from API');
         }
 
-        // Trim to 300 chars if needed
-        const trimmedReply = reply.length > 300 ? reply.substring(0, 297) + '...' : reply;
+        // Trim to 150 chars if needed
+        const trimmedReply = reply.length > 150 ? reply.substring(0, 147) + '...' : reply;
 
         // Update conversation history
         state.conversationHistory.push({
