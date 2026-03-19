@@ -11,6 +11,7 @@
         // GASでデプロイしたウェブアプリのURLをここに設定してください
         API_URL: 'https://script.google.com/macros/s/AKfycbx_CItnwZ4nw7RiIUS1SA-JSNPpsiOk_TaV2ZVhoPVb01AVvniadavisOtUANurlkSh/exec',
         MAX_HISTORY_TURNS: 3,
+        MAX_CONVERSATION_TURNS: 3,  // 最大やり取り回数
         TYPEWRITER_SPEED: 50,       // ms per character
         MOUTH_INTERVAL: 200,        // ms mouth open/close
         BLINK_MIN: 3000,            // ms minimum blink interval
@@ -64,7 +65,8 @@
         blinkTimer: null,
         mouthTimer: null,
         typewriterTimer: null,
-        conversationHistory: []
+        conversationHistory: [],
+        turnCount: 0
     };
 
     // ===== PNG Tuber Engine =====
@@ -193,7 +195,7 @@
 
     // ===== Chat / Gemini API =====
 
-    function buildRequestBody(userMessage) {
+    function buildRequestBody(userMessage, isFinalTurn = false) {
         // Build contents array from conversation history
         const contents = [];
 
@@ -209,9 +211,14 @@
             parts: [{ text: userMessage }]
         });
 
+        let systemPrompt = CONFIG.SYSTEM_PROMPT;
+        if (isFinalTurn) {
+            systemPrompt += "\n\n【重要】これが今回の最後の回答になります。質問に簡潔に答えた後、必ず「これ以上の詳細については、ぜひお問い合わせページ（https://job-mugen.com/contact）よりお気軽にご相談ください！」と案内して会話を丁寧に締めくくってください。";
+        }
+
         return {
             system_instruction: {
-                parts: [{ text: CONFIG.SYSTEM_PROMPT }]
+                parts: [{ text: systemPrompt }]
             },
             contents: contents,
             generationConfig: {
@@ -221,9 +228,9 @@
         };
     }
 
-    async function sendToGemini(userMessage) {
+    async function sendToGemini(userMessage, isFinalTurn = false) {
         const url = CONFIG.API_URL;
-        const body = buildRequestBody(userMessage);
+        const body = buildRequestBody(userMessage, isFinalTurn);
 
         const response = await fetch(url, {
             method: 'POST',
@@ -290,15 +297,25 @@
         const message = DOM.chatInput.value.trim();
         if (!message || !DOM.chatInput.disabled === false) return;
 
+        state.turnCount++;
+        const isFinalTurn = state.turnCount >= CONFIG.MAX_CONVERSATION_TURNS;
+
         DOM.chatInput.value = '';
         setInputEnabled(false);
 
         try {
-            const reply = await sendToGemini(message);
+            const reply = await sendToGemini(message, isFinalTurn);
             await typewriterSpeak(reply);
+            
+            if (isFinalTurn) {
+                // 3回目で会話を終了し、入力を無効化する
+                DOM.chatInput.placeholder = '会話は終了しました。お問い合わせをお待ちしております。';
+                return; // ここで終了し、入力を再有効化しない
+            }
         } catch (error) {
             console.error('Chat error:', error);
             await typewriterSpeak('申し訳ございません。通信エラーが発生しました。しばらくしてからもう一度お試しください。');
+            state.turnCount--; // エラー時はカウントを戻す
         }
 
         setInputEnabled(true);
