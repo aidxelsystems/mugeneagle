@@ -353,7 +353,7 @@ html, body {
     }
 
     #speech-bubble {
-        top: 2%;
+        top: 10%; /* lowered from 2% to avoid overlap with company logo */
         padding: 16px 18px;
     }
 
@@ -410,6 +410,6 @@ html, body {
     }
 
     #speech-bubble {
-        top: 1%;
+        top: 8%; /* lowered from 1% */
     }
 }
