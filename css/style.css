@@ -4,7 +4,9 @@
    ======================================== */
 
 /* --- Reset & Base --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,7 +25,8 @@
     --input-bg: rgba(20, 30, 50, 0.65);
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -36,18 +39,16 @@ html, body {
     position: fixed;
     inset: 0;
     z-index: 0;
-    background: url('../image/office.png') center center / cover no-repeat;
+    background: url('../Image/office.png') center center / cover no-repeat;
 }
 
 #background-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(10, 15, 30, 0.55) 0%,
-        rgba(10, 15, 30, 0.35) 40%,
-        rgba(10, 15, 30, 0.50) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(10, 15, 30, 0.55) 0%,
+            rgba(10, 15, 30, 0.35) 40%,
+            rgba(10, 15, 30, 0.50) 100%);
 }
 
 /* --- Company Logo --- */
@@ -98,12 +99,15 @@ html, body {
 /* --- Speech Bubble --- */
 #speech-bubble {
     position: absolute;
-    top: 10%; /* Lowered from 4% to avoid overlapping company name */
+    top: 10%;
+    /* Lowered from 4% to avoid overlapping company name */
     left: 50%;
     transform: translateX(-50%);
-    max-width: 460px; /* Reduced from 520px to make it narrower */
+    max-width: 460px;
+    /* Reduced from 520px to make it narrower */
     width: 88%;
-    padding: 16px 20px; /* Slightly reduced padding */
+    padding: 16px 20px;
+    /* Slightly reduced padding */
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 10;
@@ -170,9 +174,11 @@ html, body {
 /* A: Speaking Bounce - faster, bouncier motion */
 #character-container.speaking {
     animation: speakBounce 0.6s ease-in-out infinite;
-    transform: scale(1.05);  /* C: Scale up */
-    filter: drop-shadow(0 0 20px rgba(100, 180, 255, 0.5))  /* B: Aura glow base */
-           drop-shadow(0 0 40px rgba(80, 140, 255, 0.3));
+    transform: scale(1.05);
+    /* C: Scale up */
+    filter: drop-shadow(0 0 20px rgba(100, 180, 255, 0.5))
+        /* B: Aura glow base */
+        drop-shadow(0 0 40px rgba(80, 140, 255, 0.3));
 }
 
 .eagle-img {
@@ -194,34 +200,56 @@ html, body {
 
 /* Idle breathing - slow and gentle */
 @keyframes breathe {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50%      { transform: translateY(-6px) scale(1); }
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-6px) scale(1);
+    }
 }
 
 /* A: Speaking bounce - fast and lively */
 @keyframes speakBounce {
-    0%   { transform: translateY(0) scale(1.05); }
-    25%  { transform: translateY(-10px) scale(1.06); }
-    50%  { transform: translateY(-2px) scale(1.04); }
-    75%  { transform: translateY(-8px) scale(1.05); }
-    100% { transform: translateY(0) scale(1.05); }
+    0% {
+        transform: translateY(0) scale(1.05);
+    }
+
+    25% {
+        transform: translateY(-10px) scale(1.06);
+    }
+
+    50% {
+        transform: translateY(-2px) scale(1.04);
+    }
+
+    75% {
+        transform: translateY(-8px) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0) scale(1.05);
+    }
 }
 
 /* B: Aura glow pulsation */
 @keyframes auraGlow {
-    0%, 100% {
-        filter: drop-shadow(0 0 15px rgba(100, 180, 255, 0.4))
-               drop-shadow(0 0 35px rgba(80, 140, 255, 0.2));
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 15px rgba(100, 180, 255, 0.4)) drop-shadow(0 0 35px rgba(80, 140, 255, 0.2));
     }
+
     50% {
-        filter: drop-shadow(0 0 30px rgba(100, 200, 255, 0.7))
-               drop-shadow(0 0 60px rgba(80, 160, 255, 0.4));
+        filter: drop-shadow(0 0 30px rgba(100, 200, 255, 0.7)) drop-shadow(0 0 60px rgba(80, 160, 255, 0.4));
     }
 }
 
 #character-container.speaking {
     animation: speakBounce 0.6s ease-in-out infinite,
-               auraGlow 1.5s ease-in-out infinite;
+        auraGlow 1.5s ease-in-out infinite;
 }
 
 /* --- Input Area --- */
@@ -323,12 +351,27 @@ html, body {
     animation: pulse 1.2s ease-in-out infinite;
 }
 
-.dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
-.dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+.dot-pulse span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot-pulse span:nth-child(3) {
+    animation-delay: 0.4s;
+}
 
 @keyframes pulse {
-    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-    40%           { transform: scale(1);   opacity: 1;   }
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .loading-text {
@@ -353,7 +396,8 @@ html, body {
     }
 
     #speech-bubble {
-        top: 10%; /* lowered from 2% to avoid overlap with company logo */
+        top: 10%;
+        /* lowered from 2% to avoid overlap with company logo */
         padding: 16px 18px;
     }
 
@@ -410,6 +454,7 @@ html, body {
     }
 
     #speech-bubble {
-        top: 8%; /* lowered from 1% */
+        top: 8%;
+        /* lowered from 1% */
     }
 }
