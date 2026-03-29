@@ -159,7 +159,7 @@ html, body {
 /* --- Character --- */
 #character-container {
     position: relative;
-    width: 380px;
+    width: 544px;
     height: 380px;
     flex-shrink: 0;
     margin-bottom: 16px;
@@ -348,7 +348,7 @@ html, body {
     }
 
     #character-container {
-        width: 280px;
+        width: 401px;
         height: 280px;
     }
 
@@ -374,7 +374,7 @@ html, body {
     }
 
     #character-container {
-        width: 220px;
+        width: 315px;
         height: 220px;
     }
 
@@ -405,7 +405,7 @@ html, body {
 
 @media (max-height: 700px) {
     #character-container {
-        width: 240px;
+        width: 344px;
         height: 240px;
     }
 
