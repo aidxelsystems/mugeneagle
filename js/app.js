@@ -17,7 +17,7 @@
         BLINK_MIN: 3000,            // ms minimum blink interval
         BLINK_MAX: 6000,            // ms maximum blink interval
         BLINK_DURATION: 150,        // ms blink duration
-        INITIAL_MESSAGE: 'お仕事を探していますか？\n人材を求めていますか？\nお気軽にご相談ください！',
+        INITIAL_MESSAGE: 'お仕事をお探しの求職者の方ですか？\n人材をお求めの求人企業の方ですか？\nお気軽にお問い合わせください',       
         SYSTEM_PROMPT: `あなたは有料職業紹介事業を行う「株式会社無限プロジェクト」の案内役です。
 名前は「ムゲンイーグル」。スーツを着た威厳のあるワシのキャラクターです。
 
